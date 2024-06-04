@@ -141,8 +141,12 @@ public class CodeGenerator {
 
         symbolTable.addMethod(className, methodName, memory.getCurrentCodeBlockAddress());
 
-        symbolStack.push(className);
-        symbolStack.push(methodName);
+        pushToStack(symbolStack, className, methodName);
+    }
+
+    private void pushToStack(Stack<String> stack, String className, String methodName) {
+        stack.push(className);
+        stack.push(methodName);
     }
 
     public void pid(Token next) {
@@ -157,8 +161,7 @@ public class CodeGenerator {
             } catch (Exception e) {
                 ss.push(new Address(0, varType.Non));
             }
-            symbolStack.push(className);
-            symbolStack.push(methodName);
+            pushToStack(symbolStack, className, methodName);
         } else {
             ss.push(new Address(0, varType.Non));
         }
@@ -196,8 +199,7 @@ public class CodeGenerator {
         String methodName = symbolStack.pop();
         String className = symbolStack.pop();
         symbolTable.startCall(className, methodName);
-        callStack.push(className);
-        callStack.push(methodName);
+        pushToStack(callStack, className, methodName);
     }
 
     public void call() {
@@ -374,8 +376,7 @@ public class CodeGenerator {
 
         symbolTable.addMethod(className, methodName, memory.getCurrentCodeBlockAddress());
 
-        symbolStack.push(className);
-        symbolStack.push(methodName);
+        pushToStack(symbolStack, className, methodName);
     }
 
     public void extend() {
@@ -397,8 +398,7 @@ public class CodeGenerator {
 
         symbolTable.addMethodLocalVariable(symbolTable.getMethod(className, methodName), var);
 
-        symbolStack.push(className);
-        symbolStack.push(methodName);
+        pushToStack(symbolStack, className, methodName);
     }
 
     public void methodReturn() {
@@ -427,8 +427,7 @@ public class CodeGenerator {
 
         symbolTable.addMethodParameter(symbolTable.getMethod(className, methodName), param);
 
-        symbolStack.push(className);
-        symbolStack.push(methodName);
+        pushToStack(symbolStack, className, methodName);
     }
 
     public void lastTypeBool() {
