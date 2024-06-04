@@ -35,7 +35,8 @@ public class CodeGenerator {
             case 0:
                 return;
             case 1:
-                checkID();
+            case 25:
+                symbolStack.pop();
                 break;
             case 2:
                 pid(next);
@@ -106,9 +107,6 @@ public class CodeGenerator {
             case 24:
                 defMethod();
                 break;
-            case 25:
-                popClass();
-                break;
             case 26:
                 extend();
                 break;
@@ -145,10 +143,6 @@ public class CodeGenerator {
 
         symbolStack.push(className);
         symbolStack.push(methodName);
-    }
-
-    public void checkID() {
-        symbolStack.pop();
     }
 
     public void pid(Token next) {
@@ -382,10 +376,6 @@ public class CodeGenerator {
 
         symbolStack.push(className);
         symbolStack.push(methodName);
-    }
-
-    public void popClass() {
-        symbolStack.pop();
     }
 
     public void extend() {
