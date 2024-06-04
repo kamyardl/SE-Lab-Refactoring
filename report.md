@@ -1,5 +1,21 @@
 <div dir="rtl">
 
+## باز‌آرایی‌های انجام شده
+
+- در این [کامیت](https://github.com/kamyardl/SE-Lab-Refactoring/commit/299b7e5e7c0be1d2dc82b1cc39ef4c4249886de5)
+از Polymorphism به جای شرط استفاده شده است. برای این کار اینترفیس AddressType تعریف شده که متود toString را دارد و سه کلاس ImmediateAddress، DirectAddress و IndirectAddress آن را پیاده‌سازی می‌کنند.
+- در این [کامیت](https://github.com/kamyardl/SE-Lab-Refactoring/commit/73c3432b44bf19cbde8c637cd051162d8a5574d4)
+از الگوی Facade برای ساخت Address استفاده شده است. با توجه به اینکه ساخت Address در پکیج symbol وجود دا، استفاده از یک رابط برای ساخت راه‌حل بهتری است.
+- در این [کامیت](https://github.com/kamyardl/SE-Lab-Refactoring/commit/f9ab89a0b0f94155ed25353ec96acede107a5787)
+از الگوی Facade برای ساخت Token استفاده شده است. با توجه به اینکه ساخت Token در پکیج parser وجود داشت، استفاده از یک رابط برای ساخت راه‌حل بهتری است.
+- در این [کامیت](https://github.com/kamyardl/SE-Lab-Refactoring/commit/a6c8f720089cbb84ee4fd93513373f41d553a296) صرفا بازآرایی‌های ساده‌ای داده شده است.
+- در این [کامیت](https://github.com/kamyardl/SE-Lab-Refactoring/commit/d6fc5d963defdef2762d8f26615fbfd39025aa43) متود pushSymbolToStack استخراج شده است تا کد تکراری کمتر شود.
+- در این [کامیت](https://github.com/kamyardl/SE-Lab-Refactoring/commit/7d6ee0b6f2c1ac882e2b2cc53a7ff3bcaecefe43) Separate Query From Modifier انجام شده است. یک متود به نام getMethod برای گرفتن تابع اضافه شده و سایر متودها صرفا تغییر لازم را انجام می‌دهند.
+- در این [کامیت](https://github.com/kamyardl/SE-Lab-Refactoring/commit/4eb3b757e7cfe6eeb3d016a251488353305e955e) Self Encapsulated Field انجام شده است. برای attributeهای کلاس Parser متودهای setter و getter تعریف شده تا دسترسی به آنها فقط از طریق این متودها قابل انجام باشد.
+- در این [کامیت](https://github.com/kamyardl/SE-Lab-Refactoring/commit/506639703ce98505b16bba8104bf2f71a67019c7) از inline method استفاده شده است که خوانایی کد را افزایش می‌دهد زیرا همان یک خط کد نسبت به تابع نوشته شده قابل فهم‌تر است.
+- در این [کامیت](https://github.com/kamyardl/SE-Lab-Refactoring/commit/65070b70e92187cf4fde3591babdeb77fc38301c) متود pushToStack استخراج شده است تا از کد تکراری جلوگیری شود.
+- و نهایتا در این [کامیت](https://github.com/kamyardl/SE-Lab-Refactoring/commit/c088360f68174a71ef971da16e689aa8d8ec944d) formatter به پروژه اضافه شده است و با استفاده از آن پروژه ریفرمت شده است.
+
 ### توضیح مفاهیم
 
 - **کد تمیز**
