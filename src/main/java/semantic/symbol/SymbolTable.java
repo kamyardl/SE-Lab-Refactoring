@@ -44,15 +44,19 @@ public class SymbolTable {
         klasses.get(className).Methodes.put(methodName, new Method(address, lastType));
     }
 
-    public void addMethodParameter(String className, String methodName, String parameterName) {
-        klasses.get(className).Methodes.get(methodName).addParameter(parameterName);
+    public void addMethodParameter(Method method, String parameterName) {
+        method.addParameter(parameterName);
     }
 
-    public void addMethodLocalVariable(String className, String methodName, String localVariableName) {
-        if (klasses.get(className).Methodes.get(methodName).localVariable.containsKey(localVariableName)) {
+    public void addMethodLocalVariable(Method method, String localVariableName) {
+        if (method.localVariable.containsKey(localVariableName)) {
             ErrorHandler.printError("This variable already defined");
         }
-        klasses.get(className).Methodes.get(methodName).localVariable.put(localVariableName, new Symbol(lastType, mem.getDateAddress()));
+        method.localVariable.put(localVariableName, new Symbol(lastType, mem.getDateAddress()));
+    }
+
+    public Method getMethod(String className, String methodName) {
+        return klasses.get(className).Methodes.get(methodName);
     }
 
     public void setSuperClass(String superClass, String className) {
@@ -68,33 +72,33 @@ public class SymbolTable {
     }
 
     public Symbol get(String className, String methodName, String variable) {
-        Symbol res = klasses.get(className).Methodes.get(methodName).getVariable(variable);
+        Symbol res = getMethod(className, methodName).getVariable(variable);
         if (res == null) res = get(variable, className);
         return res;
     }
 
     public Symbol getNextParam(String className, String methodName) {
-        return klasses.get(className).Methodes.get(methodName).getNextParameter();
+        return getMethod(className, methodName).getNextParameter();
     }
 
     public void startCall(String className, String methodName) {
-        klasses.get(className).Methodes.get(methodName).reset();
+        getMethod(className, methodName).reset();
     }
 
     public int getMethodCallerAddress(String className, String methodName) {
-        return klasses.get(className).Methodes.get(methodName).callerAddress;
+        return getMethod(className, methodName).callerAddress;
     }
 
     public int getMethodReturnAddress(String className, String methodName) {
-        return klasses.get(className).Methodes.get(methodName).returnAddress;
+        return getMethod(className, methodName).returnAddress;
     }
 
     public SymbolType getMethodReturnType(String className, String methodName) {
-        return klasses.get(className).Methodes.get(methodName).returnType;
+        return getMethod(className, methodName).returnType;
     }
 
     public int getMethodAddress(String className, String methodName) {
-        return klasses.get(className).Methodes.get(methodName).codeAddress;
+        return getMethod(className, methodName).codeAddress;
     }
 
 

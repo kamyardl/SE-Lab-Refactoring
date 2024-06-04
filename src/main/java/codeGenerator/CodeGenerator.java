@@ -405,7 +405,7 @@ public class CodeGenerator {
         String methodName = symbolStack.pop();
         String className = symbolStack.pop();
 
-        symbolTable.addMethodLocalVariable(className, methodName, var);
+        symbolTable.addMethodLocalVariable(symbolTable.getMethod(className, methodName), var);
 
         symbolStack.push(className);
         symbolStack.push(methodName);
@@ -435,7 +435,7 @@ public class CodeGenerator {
         String methodName = symbolStack.pop();
         String className = symbolStack.pop();
 
-        symbolTable.addMethodParameter(className, methodName, param);
+        symbolTable.addMethodParameter(symbolTable.getMethod(className, methodName), param);
 
         symbolStack.push(className);
         symbolStack.push(methodName);
