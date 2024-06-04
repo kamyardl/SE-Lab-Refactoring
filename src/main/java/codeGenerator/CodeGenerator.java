@@ -32,110 +32,111 @@ public class CodeGenerator {
     public void semanticFunction(int func, Token next) {
         Log.print("codegenerator : " + func);
         switch (func) {
-            case 0:
-                return;
-            case 1:
-            case 25:
-                symbolStack.pop();
-                break;
-            case 2:
-                pid(next);
-                break;
-            case 3:
-                fpid();
-                break;
-            case 4:
-                kpid(next);
-                break;
-            case 5:
-                intpid(next);
-                break;
-            case 6:
-                startCall();
-                break;
-            case 7:
-                call();
-                break;
-            case 8:
-                arg();
-                break;
-            case 9:
-                assign();
-                break;
-            case 10:
-                add();
-                break;
-            case 11:
-                sub();
-                break;
-            case 12:
-                mult();
-                break;
-            case 13:
-                label();
-                break;
-            case 14:
-                save();
-                break;
-            case 15:
-                _while();
-                break;
-            case 16:
-                jpf_save();
-                break;
-            case 17:
-                jpHere();
-                break;
-            case 18:
-                print();
-                break;
-            case 19:
-                equal();
-                break;
-            case 20:
-                less_than();
-                break;
-            case 21:
-                and();
-                break;
-            case 22:
-                not();
-                break;
-            case 23:
-                defClass();
-                break;
-            case 24:
-                defMethod();
-                break;
-            case 26:
-                extend();
-                break;
-            case 27:
-                defField();
-                break;
-            case 28:
-                defVar();
-                break;
-            case 29:
-                methodReturn();
-                break;
-            case 30:
-                defParam();
-                break;
-            case 31:
-                lastTypeBool();
-                break;
-            case 32:
-                lastTypeInt();
-                break;
-            case 33:
-                defMain();
-                break;
+        case 0:
+            return;
+        case 1:
+        case 25:
+            symbolStack.pop();
+            break;
+        case 2:
+            pid(next);
+            break;
+        case 3:
+            fpid();
+            break;
+        case 4:
+            kpid(next);
+            break;
+        case 5:
+            intpid(next);
+            break;
+        case 6:
+            startCall();
+            break;
+        case 7:
+            call();
+            break;
+        case 8:
+            arg();
+            break;
+        case 9:
+            assign();
+            break;
+        case 10:
+            add();
+            break;
+        case 11:
+            sub();
+            break;
+        case 12:
+            mult();
+            break;
+        case 13:
+            label();
+            break;
+        case 14:
+            save();
+            break;
+        case 15:
+            _while();
+            break;
+        case 16:
+            jpf_save();
+            break;
+        case 17:
+            jpHere();
+            break;
+        case 18:
+            print();
+            break;
+        case 19:
+            equal();
+            break;
+        case 20:
+            less_than();
+            break;
+        case 21:
+            and();
+            break;
+        case 22:
+            not();
+            break;
+        case 23:
+            defClass();
+            break;
+        case 24:
+            defMethod();
+            break;
+        case 26:
+            extend();
+            break;
+        case 27:
+            defField();
+            break;
+        case 28:
+            defVar();
+            break;
+        case 29:
+            methodReturn();
+            break;
+        case 30:
+            defParam();
+            break;
+        case 31:
+            lastTypeBool();
+            break;
+        case 32:
+            lastTypeInt();
+            break;
+        case 33:
+            defMain();
+            break;
         }
     }
 
     private void defMain() {
-        memory.add3AddressCode(ss.pop().num, Operation.JP, new Address(memory.getCurrentCodeBlockAddress(), varType.Address), null, null);
+        memory.add3AddressCode(ss.pop().num, Operation.JP,
+                new Address(memory.getCurrentCodeBlockAddress(), varType.Address), null, null);
         String methodName = "main";
         String className = symbolStack.pop();
 
@@ -212,17 +213,21 @@ public class CodeGenerator {
         }
         varType t = varType.Int;
         switch (symbolTable.getMethodReturnType(className, methodName)) {
-            case Int:
-                break;
-            case Bool:
-                t = varType.Bool;
-                break;
+        case Int:
+            break;
+        case Bool:
+            t = varType.Bool;
+            break;
         }
         Address temp = new Address(memory.getTemp(), t);
         ss.push(temp);
-        memory.add3AddressCode(Operation.ASSIGN, new Address(temp.num, varType.Address, new ImmediateAddress()), new Address(symbolTable.getMethodReturnAddress(className, methodName), varType.Address), null);
-        memory.add3AddressCode(Operation.ASSIGN, new Address(memory.getCurrentCodeBlockAddress() + 2, varType.Address, new ImmediateAddress()), new Address(symbolTable.getMethodCallerAddress(className, methodName), varType.Address), null);
-        memory.add3AddressCode(Operation.JP, new Address(symbolTable.getMethodAddress(className, methodName), varType.Address), null, null);
+        memory.add3AddressCode(Operation.ASSIGN, new Address(temp.num, varType.Address, new ImmediateAddress()),
+                new Address(symbolTable.getMethodReturnAddress(className, methodName), varType.Address), null);
+        memory.add3AddressCode(Operation.ASSIGN,
+                new Address(memory.getCurrentCodeBlockAddress() + 2, varType.Address, new ImmediateAddress()),
+                new Address(symbolTable.getMethodCallerAddress(className, methodName), varType.Address), null);
+        memory.add3AddressCode(Operation.JP,
+                new Address(symbolTable.getMethodAddress(className, methodName), varType.Address), null, null);
     }
 
     public void arg() {
@@ -231,11 +236,11 @@ public class CodeGenerator {
             Symbol s = symbolTable.getNextParam(callStack.peek(), methodName);
             varType t = varType.Int;
             switch (s.type) {
-                case Bool:
-                    t = varType.Bool;
-                    break;
-                case Int:
-                    break;
+            case Bool:
+                t = varType.Bool;
+                break;
+            case Int:
+                break;
             }
             Address param = ss.pop();
             if (param.varType != t) {
@@ -302,18 +307,21 @@ public class CodeGenerator {
     }
 
     public void _while() {
-        memory.add3AddressCode(ss.pop().num, Operation.JPF, ss.pop(), new Address(memory.getCurrentCodeBlockAddress() + 1, varType.Address), null);
+        memory.add3AddressCode(ss.pop().num, Operation.JPF, ss.pop(),
+                new Address(memory.getCurrentCodeBlockAddress() + 1, varType.Address), null);
         memory.add3AddressCode(Operation.JP, ss.pop(), null, null);
     }
 
     public void jpf_save() {
         Address save = new Address(memory.saveMemory(), varType.Address);
-        memory.add3AddressCode(ss.pop().num, Operation.JPF, ss.pop(), new Address(memory.getCurrentCodeBlockAddress(), varType.Address), null);
+        memory.add3AddressCode(ss.pop().num, Operation.JPF, ss.pop(),
+                new Address(memory.getCurrentCodeBlockAddress(), varType.Address), null);
         ss.push(save);
     }
 
     public void jpHere() {
-        memory.add3AddressCode(ss.pop().num, Operation.JP, new Address(memory.getCurrentCodeBlockAddress(), varType.Address), null, null);
+        memory.add3AddressCode(ss.pop().num, Operation.JP,
+                new Address(memory.getCurrentCodeBlockAddress(), varType.Address), null, null);
     }
 
     public void print() {
@@ -407,16 +415,21 @@ public class CodeGenerator {
         SymbolType t = symbolTable.getMethodReturnType(symbolStack.peek(), methodName);
         varType temp = varType.Int;
         switch (t) {
-            case Int:
-                break;
-            case Bool:
-                temp = varType.Bool;
+        case Int:
+            break;
+        case Bool:
+            temp = varType.Bool;
         }
         if (s.varType != temp) {
             ErrorHandler.printError("The type of method and return address was not match");
         }
-        memory.add3AddressCode(Operation.ASSIGN, s, new Address(symbolTable.getMethodReturnAddress(symbolStack.peek(), methodName), varType.Address, new IndirectAddress()), null);
-        memory.add3AddressCode(Operation.JP, new Address(symbolTable.getMethodCallerAddress(symbolStack.peek(), methodName), varType.Address), null, null);
+        memory.add3AddressCode(Operation.ASSIGN, s,
+                new Address(symbolTable.getMethodReturnAddress(symbolStack.peek(), methodName), varType.Address,
+                        new IndirectAddress()),
+                null);
+        memory.add3AddressCode(Operation.JP,
+                new Address(symbolTable.getMethodCallerAddress(symbolStack.peek(), methodName), varType.Address), null,
+                null);
     }
 
     public void defParam() {

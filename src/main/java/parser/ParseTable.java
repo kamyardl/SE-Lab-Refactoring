@@ -45,7 +45,8 @@ public class ParseTable {
                         actionTable.get(actionTable.size() - 1).put(terminals.get(j), new Action(act.accept, 0));
                     } else if (terminals.containsKey(j)) {
                         Token t = terminals.get(j);
-                        Action a = new Action(cols[j].charAt(0) == 'r' ? act.reduce : act.shift, Integer.parseInt(cols[j].substring(1)));
+                        Action a = new Action(cols[j].charAt(0) == 'r' ? act.reduce : act.shift,
+                                Integer.parseInt(cols[j].substring(1)));
                         actionTable.get(actionTable.size() - 1).put(t, a);
                     } else if (nonTerminals.containsKey(j)) {
                         gotoTable.get(gotoTable.size() - 1).put(nonTerminals.get(j), Integer.parseInt(cols[j]));

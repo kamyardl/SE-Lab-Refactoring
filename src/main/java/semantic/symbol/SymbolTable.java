@@ -73,7 +73,8 @@ public class SymbolTable {
 
     public Symbol get(String className, String methodName, String variable) {
         Symbol res = getMethod(className, methodName).getVariable(variable);
-        if (res == null) res = get(variable, className);
+        if (res == null)
+            res = get(variable, className);
         return res;
     }
 
@@ -100,7 +101,6 @@ public class SymbolTable {
     public int getMethodAddress(String className, String methodName) {
         return getMethod(className, methodName).codeAddress;
     }
-
 
     class Klass {
         public Map<String, Symbol> Fields;
@@ -143,8 +143,10 @@ public class SymbolTable {
         }
 
         public Symbol getVariable(String variableName) {
-            if (parameters.containsKey(variableName)) return parameters.get(variableName);
-            if (localVariable.containsKey(variableName)) return localVariable.get(variableName);
+            if (parameters.containsKey(variableName))
+                return parameters.get(variableName);
+            if (localVariable.containsKey(variableName))
+                return localVariable.get(variableName);
             return null;
         }
 
