@@ -158,15 +158,7 @@ public class CodeGenerator {
             try {
 
                 Symbol s = symbolTable.get(className, methodName, next.value);
-                varType t = varType.Int;
-                switch (s.type) {
-                    case Bool:
-                        t = varType.Bool;
-                        break;
-                    case Int:
-                        break;
-                }
-                ss.push(new Address(s.address, t));
+                pushSymbolToStack(s);
 
             } catch (Exception e) {
                 ss.push(new Address(0, varType.Non));
@@ -184,16 +176,16 @@ public class CodeGenerator {
         ss.pop();
 
         Symbol s = symbolTable.get(symbolStack.pop(), symbolStack.pop());
+        pushSymbolToStack(s);
+
+    }
+
+    private void pushSymbolToStack(Symbol s) {
         varType t = varType.Int;
-        switch (s.type) {
-            case Bool:
-                t = varType.Bool;
-                break;
-            case Int:
-                break;
+        if (s.type == SymbolType.Bool) {
+            t = varType.Bool;
         }
         ss.push(new Address(s.address, t));
-
     }
 
     public void kpid(Token next) {
