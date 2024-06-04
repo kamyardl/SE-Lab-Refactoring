@@ -46,6 +46,12 @@
 2. **Long Method** در فایل `src/com/project/Main.java` یا فایل `src/com/project/lexicalAnalyzer/LexicalAnalyzer.java` 
 3. **Data Class** در فایل `src/com/project/graphBaseDependency/DependencyEdge.java`
 4. **Switch Statements** در فایل `src/com/project/lexicalAnalyzer/LexicalAnalyzer.java`
+5. **Comments**: کامنت‌های بی‌معنی زیاد در پروژه
+6. **Long Parameter List**: به طور مثال در تابع addToTable
+7. **Duplicate Code**
+8. **Feature Envy**
+9. **Lazy Function**: به طور مثال در تابع generateSelectArg
+10. **Data Clump**
 ### پلاگین Formatter
 
 - **عملکرد**
