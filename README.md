@@ -13,6 +13,11 @@
 ![kam7](https://github.com/kamyardl/SE-Lab-Refactoring/assets/45800398/2fac7ea9-95f3-4161-a5c2-3b60f96eef8e)
 ![kam8](https://github.com/kamyardl/SE-Lab-Refactoring/assets/45800398/f8f55a6b-da7f-4b72-ac35-9a00b4ea1290)
 ![kam9](https://github.com/kamyardl/SE-Lab-Refactoring/assets/45800398/835db48f-bf19-4fca-b4b3-c6a39796b22d)
+![kam10](https://github.com/kamyardl/SE-Lab-Refactoring/assets/45800398/183ccb0a-0e67-4054-b049-25123ced10b4)
+![kam11](https://github.com/kamyardl/SE-Lab-Refactoring/assets/45800398/4016f050-65cd-4cb9-8276-076ce5230cf5)
+![kam12](https://github.com/kamyardl/SE-Lab-Refactoring/assets/45800398/b6cf10af-43e4-4f83-8897-686db4f37a37)
+![kam13](https://github.com/kamyardl/SE-Lab-Refactoring/assets/45800398/86e4e63b-248b-4a76-b415-b0cd8d6bbd53)
+
 
 
 
